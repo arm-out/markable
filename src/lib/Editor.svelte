@@ -7,7 +7,9 @@
 	import Heading from '@tiptap/extension-heading';
 	import HorizontalRule from '@tiptap/extension-horizontal-rule';
 	import Typography from '@tiptap/extension-typography';
-	import Italic from '@tiptap/extension-italic';
+	import { MarkableBold } from './extensions/MarkableBold';
+	import { MarkableItalic } from './extensions/MarkableItalic';
+	import { MarkableStrike } from './extensions/MarkableStrike';
 	import Strike from '@tiptap/extension-strike';
 	import Blockquote from '@tiptap/extension-blockquote';
 	import ListItem from '@tiptap/extension-list-item';
@@ -21,9 +23,9 @@
 	import Superscript from '@tiptap/extension-superscript';
 	import Dropcursor from '@tiptap/extension-dropcursor';
 	import Gapcursor from '@tiptap/extension-gapcursor';
+	import TextStyle from '@tiptap/extension-text-style';
 
 	import { onDestroy, onMount } from 'svelte';
-	import { MarkableBold } from './extensions/MarkableBold';
 
 	export let content = '';
 	export let lowlight;
@@ -42,8 +44,8 @@
 				HorizontalRule,
 				Typography,
 				MarkableBold,
-				Italic,
-				Strike,
+				MarkableItalic,
+				MarkableStrike,
 				Blockquote,
 				ListItem,
 				BulletList,
@@ -55,7 +57,8 @@
 				Subscript,
 				Superscript,
 				Dropcursor,
-				Gapcursor
+				Gapcursor,
+				TextStyle
 			],
 			content: content,
 			onUpdate: ({ editor }) => {
