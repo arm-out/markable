@@ -7,7 +7,6 @@
 	import Heading from '@tiptap/extension-heading';
 	import HorizontalRule from '@tiptap/extension-horizontal-rule';
 	import Typography from '@tiptap/extension-typography';
-	import Bold from '@tiptap/extension-bold';
 	import Italic from '@tiptap/extension-italic';
 	import Strike from '@tiptap/extension-strike';
 	import Blockquote from '@tiptap/extension-blockquote';
@@ -24,8 +23,9 @@
 	import Gapcursor from '@tiptap/extension-gapcursor';
 
 	import { onDestroy, onMount } from 'svelte';
+	import { MarkableBold } from './extensions/MarkableBold';
 
-	export let content = 'fsdfsfs';
+	export let content = '';
 	export let lowlight;
 
 	let editor: Editor;
@@ -41,7 +41,7 @@
 				Heading,
 				HorizontalRule,
 				Typography,
-				Bold,
+				MarkableBold,
 				Italic,
 				Strike,
 				Blockquote,
