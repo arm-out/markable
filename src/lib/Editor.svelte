@@ -1,10 +1,32 @@
 <script lang="ts">
 	import { Editor } from '@tiptap/core';
-	import StarterKit from '@tiptap/starter-kit';
-	import { onDestroy, onMount } from 'svelte';
-	import { Markdown } from 'tiptap-markdown';
 
-	export let content = '';
+	import Document from '@tiptap/extension-document';
+	import Paragraph from '@tiptap/extension-paragraph';
+	import Text from '@tiptap/extension-text';
+	import Heading from '@tiptap/extension-heading';
+	import HorizontalRule from '@tiptap/extension-horizontal-rule';
+	import Typography from '@tiptap/extension-typography';
+	import Bold from '@tiptap/extension-bold';
+	import Italic from '@tiptap/extension-italic';
+	import Strike from '@tiptap/extension-strike';
+	import Blockquote from '@tiptap/extension-blockquote';
+	import ListItem from '@tiptap/extension-list-item';
+	import BulletList from '@tiptap/extension-bullet-list';
+	import OrderedList from '@tiptap/extension-ordered-list';
+	import Code from '@tiptap/extension-code';
+	import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
+	import TaskList from '@tiptap/extension-task-list';
+	import TaskItem from '@tiptap/extension-task-item';
+	import Subscript from '@tiptap/extension-subscript';
+	import Superscript from '@tiptap/extension-superscript';
+	import Dropcursor from '@tiptap/extension-dropcursor';
+	import Gapcursor from '@tiptap/extension-gapcursor';
+
+	import { onDestroy, onMount } from 'svelte';
+
+	export let content = 'fsdfsfs';
+	export let lowlight;
 
 	let editor: Editor;
 	let element: HTMLDivElement;
@@ -13,14 +35,35 @@
 		editor = new Editor({
 			element: element,
 			extensions: [
-				StarterKit,
-				Markdown.configure({ transformPastedText: true, transformCopiedText: true })
+				Document,
+				Paragraph,
+				Text,
+				Heading,
+				HorizontalRule,
+				Typography,
+				Bold,
+				Italic,
+				Strike,
+				Blockquote,
+				ListItem,
+				BulletList,
+				OrderedList,
+				Code,
+				CodeBlockLowlight.configure({ lowlight }),
+				TaskList,
+				TaskItem.configure({ nested: true }),
+				Subscript,
+				Superscript,
+				Dropcursor,
+				Gapcursor
 			],
 			content: content,
 			onUpdate: ({ editor }) => {
 				content = editor.getHTML();
 			}
 		});
+
+		editor.commands.focus('start');
 	});
 
 	onDestroy(() => {
