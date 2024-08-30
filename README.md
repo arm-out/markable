@@ -5,11 +5,11 @@ todo:
   - images
   - tables
   - styling
-  - bold/italics/strike plugins
-  - sub/superscript plugins
   - inline math
   - block math
   - code styling
+  - fix: bold/italic/strike, sub, super
+  - fix checkbox
 - App:
   - Pane switching
   - File I/O
