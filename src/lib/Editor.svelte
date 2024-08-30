@@ -10,7 +10,6 @@
 	import { MarkableBold } from './extensions/MarkableBold';
 	import { MarkableItalic } from './extensions/MarkableItalic';
 	import { MarkableStrike } from './extensions/MarkableStrike';
-	import Strike from '@tiptap/extension-strike';
 	import Blockquote from '@tiptap/extension-blockquote';
 	import ListItem from '@tiptap/extension-list-item';
 	import BulletList from '@tiptap/extension-bullet-list';
@@ -19,8 +18,8 @@
 	import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 	import TaskList from '@tiptap/extension-task-list';
 	import TaskItem from '@tiptap/extension-task-item';
-	import Subscript from '@tiptap/extension-subscript';
-	import Superscript from '@tiptap/extension-superscript';
+	import { MarkableSubscript } from './extensions/MarkableSubscript';
+	import { MarkableSuperscript } from './extensions/MarkableSuperscript';
 	import Dropcursor from '@tiptap/extension-dropcursor';
 	import Gapcursor from '@tiptap/extension-gapcursor';
 	import TextStyle from '@tiptap/extension-text-style';
@@ -54,8 +53,8 @@
 				CodeBlockLowlight.configure({ lowlight }),
 				TaskList,
 				TaskItem.configure({ nested: true }),
-				Subscript,
-				Superscript,
+				MarkableSubscript,
+				MarkableSuperscript,
 				Dropcursor,
 				Gapcursor,
 				TextStyle
