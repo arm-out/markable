@@ -4,9 +4,9 @@ todo:
   - links
   - images
   - tables
-  - emojis
   - styling
-  - sub/superscript
+  - bold/italics/strike plugins
+  - sub/superscript plugins
   - inline math
   - block math
   - code styling
@@ -16,3 +16,4 @@ todo:
   - themes
   - shortcuts
   - command palette
+  - copy markdown
