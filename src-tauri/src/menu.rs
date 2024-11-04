@@ -1,7 +1,6 @@
 use tauri::Runtime;
 
 pub fn create_menu<R: Runtime>(app: &tauri::App<R>) -> tauri::Result<()> {
-
     // let file_menu = SubmenuBuilder::new(app, "File")
     //             .text("open", "open")
     //             .text("quit", "quit")
@@ -14,5 +13,4 @@ pub fn create_menu<R: Runtime>(app: &tauri::App<R>) -> tauri::Result<()> {
     // app.set_menu(menu)?;
 
     Ok(())
-
 }
