@@ -1,35 +1,8 @@
 <script lang="ts">
+	import Editor from '$lib/Editor.svelte';
 	import { invoke } from '@tauri-apps/api/core';
-	import { onDestroy } from 'svelte';
-	import { Editor } from '@tiptap/core';
-	import StarterKit from '@tiptap/starter-kit';
 
-	let content = $state('');
-	let editorElement: HTMLDivElement;
-	let editor: Editor;
-
-	$effect(() => {
-		if (editor) {
-			editor.destroy();
-		}
-
-		editor = new Editor({
-			element: editorElement,
-			extensions: [StarterKit],
-			content,
-			onTransaction: () => {
-				editor = editor;
-			}
-		});
-	});
-
-	onDestroy(() => {
-		if (editor) {
-			editor.destroy();
-		}
-	});
-
-	$inspect(content);
+	let content = '';
 
 	async function open() {
 		invoke('open_file').then((res) => {
@@ -45,13 +18,5 @@
 	<button>Save As</button>
 	<button>Save</button>
 
-	<!-- svelte-ignore element_invalid_self_closing_tag -->
-	<div bind:this={editorElement} class="editor" />
+	<Editor {content} />
 </div>
-
-<style>
-	:global(.tiptap) {
-		height: 100vh;
-		outline: none;
-	}
-</style>
