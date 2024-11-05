@@ -16,7 +16,7 @@ Post 0.1.0:
   - find/replace
 - multi-tab support
 - multi-window support
-- tabs
+- table
 - wordcount
 - open states
 - export to pdf
