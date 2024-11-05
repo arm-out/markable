@@ -1,5 +1,6 @@
 mod fs;
 mod menu;
+mod markdown;
 
 use tauri::Manager;
 
