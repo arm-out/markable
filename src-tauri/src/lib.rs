@@ -11,7 +11,7 @@ pub fn run() {
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![fs::open_file])
         .setup(|app| {
-            // menu::create_menu(app)?;
+            menu::create_menu(app)?;
             #[cfg(dev)] {
                 let window = app.get_webview_window("main").unwrap();
                 window.open_devtools();
