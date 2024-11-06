@@ -1,6 +1,7 @@
 use comrak::{
     markdown_to_html, ExtensionOptionsBuilder, Options, ParseOptionsBuilder, RenderOptionsBuilder,
 };
+use htmd::HtmlToMarkdown;
 
 pub fn parse_md(content: String) -> String {
     let extension = ExtensionOptionsBuilder::default()
@@ -43,5 +44,11 @@ pub fn parse_md(content: String) -> String {
 
     print!("{}", md);
 
+    md
+}
+
+pub fn html_to_md(content: String) -> String {
+    let converter = HtmlToMarkdown::builder().build();
+    let md = converter.convert(&content).unwrap();
     md
 }

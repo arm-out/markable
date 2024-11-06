@@ -40,4 +40,5 @@ serde_json = "1"
 tauri-plugin-dialog = "2"
 tauri-plugin-fs = "2"
 comrak = "0.29"
+htmd = "0.1"
 
