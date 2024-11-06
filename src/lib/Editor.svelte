@@ -3,7 +3,7 @@
 	import { Editor } from '@tiptap/core';
 	import StarterKit from '@tiptap/starter-kit';
 
-	let { content = '' } = $props();
+	let { content = '', path = '' } = $props();
 	let editorElement: HTMLDivElement;
 	let editor: Editor;
 

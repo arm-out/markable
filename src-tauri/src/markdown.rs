@@ -2,7 +2,7 @@ use comrak::{
     markdown_to_html, ExtensionOptionsBuilder, Options, ParseOptionsBuilder, RenderOptionsBuilder,
 };
 
-pub fn parse_md(content: String) -> Vec<u8> {
+pub fn parse_md(content: String) -> String {
     let extension = ExtensionOptionsBuilder::default()
         .strikethrough(true)
         .tagfilter(true)
@@ -43,5 +43,5 @@ pub fn parse_md(content: String) -> Vec<u8> {
 
     print!("{}", md);
 
-    md.as_bytes().to_vec()
+    md
 }

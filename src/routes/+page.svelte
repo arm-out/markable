@@ -1,15 +1,22 @@
 <script lang="ts">
 	import Editor from '$lib/Editor.svelte';
+	import type { File } from '$lib/types';
 	import { invoke } from '@tauri-apps/api/core';
 
 	let content = '';
+	let path = '';
 
 	async function open() {
-		invoke('open_file').then((res) => {
-			const buffer = new Uint8Array(res as ArrayBuffer);
-			console.log(buffer);
-			content = String.fromCharCode(...buffer);
-		});
+		invoke('open_file')
+			.then((res) => {
+				const file = res as File;
+				console.log(file);
+				content = file.content;
+				path = file.path;
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}
 </script>
 
@@ -18,5 +25,5 @@
 	<button>Save As</button>
 	<button>Save</button>
 
-	<Editor {content} />
+	<Editor {content} {path} />
 </div>
