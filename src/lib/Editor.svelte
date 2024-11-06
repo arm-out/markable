@@ -50,21 +50,22 @@
 	$inspect(editor);
 	$inspect(content);
 
-	// async function save() {
-	// 	console.log('saving');
-	// 	invoke('save_file', { path, content })
-	// 		.then(() => {
-	// 			console.log('File saved');
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// }
+	async function save() {
+		console.log('saving');
+		invoke('save_file', { path, content })
+			.then(() => {
+				console.log('File saved');
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
 </script>
 
 <button onclick={open}>Open</button>
 <button>Save As</button>
-<!-- <button onclick={save}>Save</button> -->
+<button onclick={save}>Save</button>
+
 <!-- svelte-ignore element_invalid_self_closing_tag -->
 <div bind:this={editorElement} class="editor" />
 

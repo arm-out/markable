@@ -34,3 +34,19 @@ pub async fn open_file(app: tauri::AppHandle) -> Result<Response, String> {
 
     return Err(format!("Cannot find file {:?}", file_path));
 }
+
+#[tauri::command]
+pub fn save_file(app: tauri::AppHandle, path: String, content: String) -> Result<(), String> {
+    let file_path = Path::new(&path);
+    let opts = OpenOptions::new().write(true).truncate(true).to_owned();
+    let file = app.fs().open(file_path, opts);
+
+    if let Ok(mut file) = file {
+        match file.write_all(content.as_bytes()) {
+            Ok(_) => Ok(()),
+            Err(e) => Err(e.to_string()),
+        }
+    } else {
+        Err("Error opening file".to_string())
+    }
+}
