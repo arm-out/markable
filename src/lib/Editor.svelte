@@ -10,6 +10,10 @@
 	let editorElement: HTMLDivElement;
 	let editor = $state<Editor>();
 
+	$inspect(editor);
+	$inspect(content);
+	$inspect(path);
+
 	onMount(() => {
 		editor = createEditor(editorElement, content);
 		editor.on('transaction', () => {
@@ -47,9 +51,6 @@
 			});
 	}
 
-	$inspect(editor);
-	$inspect(content);
-
 	async function save() {
 		console.log('saving');
 		invoke('save_file', { path, content })
@@ -60,10 +61,22 @@
 				console.log(err);
 			});
 	}
+
+	async function saveAs() {
+		console.log('saving as');
+		invoke('save_file_as', { content })
+			.then((file_path) => {
+				console.log('File saved at ' + file_path);
+				path = file_path as string;
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}
 </script>
 
 <button onclick={open}>Open</button>
-<button>Save As</button>
+<button onclick={saveAs}>Save As</button>
 <button onclick={save}>Save</button>
 
 <!-- svelte-ignore element_invalid_self_closing_tag -->

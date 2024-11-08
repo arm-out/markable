@@ -10,7 +10,11 @@ pub fn run() {
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_shell::init())
-        .invoke_handler(tauri::generate_handler![fs::open_file, fs::save_file])
+        .invoke_handler(tauri::generate_handler![
+            fs::open_file,
+            fs::save_file,
+            fs::save_file_as
+        ])
         .setup(|app| {
             menu::create_menu(app)?;
             #[cfg(dev)]

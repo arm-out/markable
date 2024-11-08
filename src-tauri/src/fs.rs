@@ -36,18 +36,36 @@ pub async fn open_file(app: tauri::AppHandle) -> Result<Response, String> {
 }
 
 #[tauri::command]
+pub async fn save_file_as(app: tauri::AppHandle, content: String) -> Result<String, String> {
+    let file_path = app
+        .dialog()
+        .file()
+        .add_filter("markdown", &["md"])
+        .blocking_save_file();
+
+    if let Some(file_path) = file_path {
+        save_file(app, file_path.to_string(), content).unwrap();
+        Ok(file_path.to_string())
+    } else {
+        Err("Cannot find file".to_string())
+    }
+}
+
+#[tauri::command]
 pub fn save_file(app: tauri::AppHandle, path: String, content: String) -> Result<(), String> {
     let md = markdown::html_to_md(content);
     let file_path = Path::new(&path);
-    let opts = OpenOptions::new().write(true).truncate(true).to_owned();
-    let file = app.fs().open(file_path, opts);
+    let opts = OpenOptions::new()
+        .write(true)
+        .create(true)
+        .truncate(true)
+        .to_owned();
 
-    if let Ok(mut file) = file {
-        match file.write_all(md.as_bytes()) {
+    match app.fs().open(file_path, opts) {
+        Ok(mut file) => match file.write_all(md.as_bytes()) {
             Ok(_) => Ok(()),
             Err(e) => Err(e.to_string()),
-        }
-    } else {
-        Err("Error opening file".to_string())
+        },
+        Err(e) => Err(e.to_string()),
     }
 }
