@@ -1,3 +1,4 @@
 import { MarkableHeading } from './heading';
+import { MarkableParagraph } from './paragraph';
 
-export { MarkableHeading };
+export { MarkableHeading, MarkableParagraph };
