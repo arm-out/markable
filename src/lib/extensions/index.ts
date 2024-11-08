@@ -1,4 +1,5 @@
+import { MarkableBlockquote } from './blockquote';
 import { MarkableHeading } from './heading';
 import { MarkableParagraph } from './paragraph';
 
-export { MarkableHeading, MarkableParagraph };
+export { MarkableHeading, MarkableParagraph, MarkableBlockquote };
