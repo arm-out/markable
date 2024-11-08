@@ -3,7 +3,7 @@
 	import { Editor } from '@tiptap/core';
 	import { invoke } from '@tauri-apps/api/core';
 	import type { MdFile } from '$lib/types';
-	import { createEditor } from './utils.svelte';
+	import { createEditor } from './editor';
 
 	let content = $state('');
 	let path = $state('');
